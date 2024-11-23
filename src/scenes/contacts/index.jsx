@@ -6,7 +6,7 @@ import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 
 
-export default function index() {
+export default function Contacts() {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
@@ -23,7 +23,7 @@ export default function index() {
     ]
     return (
         <Box m="20px">
-            <Header title="Contacts" subTitle="List of Contacts for Future Reference" />
+            <Header title="CONTACTS" subTitle="List of Contacts for Future Reference" />
             <Box m="40 0 0 0" height="75vh"
                 sx={{
                     "& .MuiDataGrid-root": {
@@ -45,9 +45,6 @@ export default function index() {
                     "& .MuiDataGrid-footerContainer": {
                         borderTop: "none",
                         backgroundColor: colors.blueAccent[700],
-                    },
-                    "& .MuiCheckbox-root": {
-                        color: `${colors.greenAccent[200]} !important`,
                     },
                     "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
                         color: `${colors.grey[100]} !important`,

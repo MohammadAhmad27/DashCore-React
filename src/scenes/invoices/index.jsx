@@ -2,49 +2,33 @@ import React from 'react'
 import { Box, Typography, useTheme } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid';
 import { tokens } from '../../theme';
-import { mockDataTeam } from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+import { mockDataInvoices } from "../../data/mockData";
 import Header from "../../components/Header";
 
 
-export default function Team() {
+export default function Inovices() {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
     const columns = [
-        { field: 'id', headerName: 'ID' },
+        { field: 'id', headerName: 'ID', flex: 0.5 },
         { field: 'name', headerName: 'Name', flex: 1, cellClassName: "name-column--cell" },
-        { field: 'age', headerName: 'Age', type: "number", headerAlign: "left", align: "left" },
         { field: 'phone', headerName: 'PhoneNumber', flex: 1 },
         { field: 'email', headerName: 'Email', flex: 1 },
+        { field: 'date', headerName: 'Date', flex: 1 },
         {
-            field: 'access', headerName: 'Access', flex: 1, renderCell: ({ row: { access } }) => {
-                return (
-                    <Box width="60%" m="0 auto" p="5px" display="flex" justifyContent="space-between" alignItems="center" borderRadius="4px" mt="10px"
-                        backgroundColor={
-                            access === "admin"
-                                ? colors.greenAccent[600]
-                                : access === "manager"
-                                    ? colors.greenAccent[700]
-                                    : colors.greenAccent[700]
-                        }>
-                        {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-                        {access === "manager" && <SecurityOutlinedIcon />}
-                        {access === "user" && <LockOpenOutlinedIcon />}
-                        <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>{access}</Typography>
-                    </Box>
-                )
-            }
+            field: 'cost', headerName: 'Cost', flex: 1,
+            renderCell: (params) => (
+                <Typography color={colors.greenAccent[500]}>
+                    ${params.row.cost}
+                </Typography>
+            ),
+
         },
-
-
-
     ]
     return (
         <Box m="20px">
-            <Header title="TEAM" subTitle="Managing the Team Members" />
+            <Header title="INVOICES" subTitle="List of Invoice Balances" />
             <Box m="40 0 0 0" height="75vh"
                 sx={{
                     "& .MuiDataGrid-root": {
@@ -72,7 +56,11 @@ export default function Team() {
                     },
                 }}
             >
-                <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+                <DataGrid
+                    checkboxSelection
+                    rows={mockDataInvoices}
+                    columns={columns}
+                />
             </Box>
         </Box>
     )
